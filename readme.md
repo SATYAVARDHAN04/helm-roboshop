@@ -43,3 +43,21 @@ helm upgrade --install aws-ebs-csi-driver \
     --namespace kube-system \
     aws-ebs-csi-driver/aws-ebs-csi-driver
 ```
+
+```bash
+helm list --all-namespace
+```
+
+**REDIS INSTALLATION**
+
+```bash
+helm repo add bitnami https://charts.bitnami.com
+```
+
+```bash
+helm repo update
+```
+
+```bash
+helm install redis-cluster bitnami/redis
+```
