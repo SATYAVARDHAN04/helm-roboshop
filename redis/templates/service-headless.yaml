@@ -1,20 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rabbitmq
+  name: redis-headless
   namespace: roboshop
   labels:
     project: roboshop
     purpose: rsdemo
-    tier: messaging
-    microname: rabbitmq
+    tier: database
+    microname: redis
 spec:
   selector:
     project: roboshop
     purpose: rsdemo
-    tier: messaging
-    microname: rabbitmq
+    tier: database
+    microname: redis
   ports:
     - protocol: TCP
-      port: 5672
-      targetPort: 5672
+      port: 6379
+      targetPort: 6379
+  clusterIP: None

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  namespace: roboshop
+  labels:
+    project: roboshop
+    purpose: rsdemo
+    tier: app
+    microname: shipping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: roboshop
+      purpose: rsdemo
+      tier: app
+      microname: shipping
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        purpose: rsdemo
+        tier: app
+        microname: shipping
+    spec:
+      containers:
+        - name: shipping
+          image: satyology/shippingoptimized
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
+          envFrom:
+            - configMapRef:
+                name: shipping

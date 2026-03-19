@@ -1,44 +1,41 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: rabbitmq
+  name: redis
   namespace: roboshop
   labels:
     project: roboshop
     purpose: rsdemo
-    tier: messaging
-    microname: rabbitmq
+    tier: database
+    microname: redis
 spec:
-  serviceName: rabbitmq-headless
+  serviceName: redis-headless
   replicas: {{ .Values.statefulset.replicas }}
   selector:
     matchLabels:
       project: roboshop
       purpose: rsdemo
-      tier: messaging
-      microname: rabbitmq
+      tier: database
+      microname: redis
   template:
     metadata:
       labels:
         project: roboshop
         purpose: rsdemo
-        tier: messaging
-        microname: rabbitmq
+        tier: database
+        microname: redis
     spec:
       containers:
-        - name: rabbitmq
+        - name: redis
           image: {{ .Values.statefulset.imageURL }}
           ports:
-            - containerPort: 5672
-          envFrom:
-            - secretRef:
-                name: rabbitmqsecret
+            - containerPort: 6379
           volumeMounts:
-            - name: rabbitmq-data
-              mountPath: /var/lib/rabbitmq
+            - name: redis-data
+              mountPath: /data
   volumeClaimTemplates:
     - metadata:
-        name: rabbitmq-data
+        name: redis-data
       spec:
         accessModes: ["ReadWriteOnce"]
         storageClassName: "roboshop-ebs"
