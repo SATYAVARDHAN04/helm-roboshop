@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: roboshop
+  labels:
+    project: roboshop
+    purpose: rsdemo
+    tier: app
+    microname: frontend
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      project: roboshop
+      purpose: rsdemo
+      tier: app
+      microname: frontend
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        purpose: rsdemo
+        tier: app
+        microname: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.deployment.imageURL }}
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+          volumeMounts:
+            - name: frontend-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: frontend-config
+          configMap:
+            name: frontend-config
