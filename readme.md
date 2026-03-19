@@ -17,8 +17,13 @@ helm status nginx
 ```bash
 helm history nginx
 ```
+
 ```bash
 helm upgrade nginx --description "upgrading to stabe nginx version" .
+```
+
+```bash
+helm upgrade --install nginx --description "upgrading to stabe nginx version" .
 ```
 
 ```bash
