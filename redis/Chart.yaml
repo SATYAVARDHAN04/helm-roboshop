@@ -1,5 +1,5 @@
 apiVersion: v2
-name: mongodb
+name: redis
 version: 1.0.0 # chart version
-description: "Mongodb Helm Chart"
+description: "Redis Helm Chart"
 appVersion: v1 # app version

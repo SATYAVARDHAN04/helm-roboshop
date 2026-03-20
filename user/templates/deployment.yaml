@@ -9,7 +9,7 @@ metadata:
     tier: app
     microname: user
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       project: roboshop
@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: user
-          image: satyology/useroptimized
+          image: {{ .Values.deployment.imageURL }}
           resources:
             requests:
               cpu: "50m"
