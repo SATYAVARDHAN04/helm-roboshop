@@ -35,13 +35,12 @@ eksctl create cluster --config-file=eks.yaml
 ```
 ```bash
 eksctl delete cluster --config-file=eks.yaml
-
+```
 
 ```bash
 kubectl apply -f namespace.yaml
 ```
 
-```
 ## KUBENS INSTALLATION
 
 ```bash
