@@ -9,7 +9,7 @@ metadata:
     tier: app
     microname: cart
 spec:
-  replicas: {{ .Values.deployment.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       project: roboshop
