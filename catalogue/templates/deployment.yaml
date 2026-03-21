@@ -9,7 +9,7 @@ metadata:
     tier: app
     microname: catalogue
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       project: roboshop
